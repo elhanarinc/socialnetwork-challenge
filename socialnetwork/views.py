@@ -31,17 +31,17 @@ def signup(request):
         if user is not None:
             return JsonResponse({'result': 'email address already registered'}, status=400)
         else:
-            is_valid_email = check_email(body['email'])
-            if not is_valid_email:
-                return JsonResponse({'result': 'email is not valid'}, status=400)
+            # is_valid_email = check_email(body['email'])
+            # if not is_valid_email:
+            #     return JsonResponse({'result': 'email is not valid'}, status=400)
 
             hashed_password = bcrypt.hashpw(body['password'].encode('utf-8'), bcrypt.gensalt()).decode()
-            extra_info = find_extensive_data(body['email'])
+            # extra_info = find_extensive_data(body['email'])
 
             user_to_insert = UserData(name=body['name'],
                                       password=hashed_password,
-                                      email=body['email'],
-                                      additional_information=extra_info)
+                                      email=body['email'])
+                                      # additional_information=extra_info)
             user_to_insert.save()
 
             payload = {
@@ -55,6 +55,7 @@ def signup(request):
         return JsonResponse({'result': 'invalid or missing body params'}, status=400)
 
 
+@require_http_methods(['POST'])
 def login(request):
     body = json.loads(request.body)
     login_data = LoginForm(body)
@@ -81,16 +82,19 @@ def login(request):
         return JsonResponse({'result': 'invalid or missing body params'}, status=400)
 
 
+@require_http_methods(['POST'])
 @decorator_from_middleware(JWTMiddleware)
 def like(request):
-    return like_dislike_helper_func(request, 1)
+    return like_dislike_helper_func(request, 'like')
 
 
+@require_http_methods(['POST'])
 @decorator_from_middleware(JWTMiddleware)
-def dislike(request):
-    return like_dislike_helper_func(request, -1)
+def unlike(request):
+    return like_dislike_helper_func(request, 'unlike')
 
 
+@require_http_methods(['POST'])
 @decorator_from_middleware(JWTMiddleware)
 def create(request):
     body = json.loads(request.body)
@@ -115,7 +119,10 @@ def create(request):
         return JsonResponse({'result': 'invalid or missing body params'}, status=400)
 
 
-def like_dislike_helper_func(request, counter):
+####################
+# Helper Functions #
+####################
+def like_dislike_helper_func(request, selector):
     body = json.loads(request.body)
     data = LikeAndDislikeForm(body)
     if data.is_valid():
@@ -135,12 +142,46 @@ def like_dislike_helper_func(request, counter):
 
             if post is None:
                 return JsonResponse({'result': 'post not found'}, status=404)
+            elif str(post.owner.email) == str(user.email):
+                return JsonResponse({'result': 'user cannot like his/hers own post'}, status=403)
             else:
-                user.current_like_count = user.current_like_count + counter
+                if 'max_count' in body and int(user.current_like_count) >= int(body['max_count']):
+                    return JsonResponse({'result': 'user cannot like more than max like count'}, status=403)
+
+                if post.liked_users is None:
+                    post.liked_users = []
+
+                if selector == 'like':
+                    if user.id in post.liked_users:
+                        return JsonResponse({'result': 'user already liked this post'}, status=403)
+
+                    post.liked_users.append(user.id)
+                    user.current_like_count = user.current_like_count + 1
+
+                elif selector == 'unlike':
+                    if user.id not in post.liked_users:
+                        return JsonResponse({'result': 'user haven`t liked this post'}, status=403)
+
+                    post.liked_users.remove(user.id)
+                    user.current_like_count = user.current_like_count - 1
+
+                post.save(update_fields=['liked_users'])
                 user.save(update_fields=['current_like_count'])
-                post.like_count = post.like_count + counter
-                post.save(update_fields=['like_count'])
                 return JsonResponse({'result': 'OK'})
+
     else:
         return JsonResponse({'result': 'invalid or missing body params'}, status=400)
 
+
+@require_http_methods(['GET'])
+def find_user(request):
+    body = json.loads(request.body)
+    max_like_count = body['max_like_count']
+    user_data = UserData.objects.all()\
+        .filter(current_like_count__lt=int(max_like_count))\
+        .order_by('-current_post_count')
+
+    if len(user_data) <= 0:
+        return JsonResponse({'result': 'no user found'}, status=404)
+    else:
+        return JsonResponse({'user_email': user_data[0].email})

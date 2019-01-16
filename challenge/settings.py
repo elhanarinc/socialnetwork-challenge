@@ -123,4 +123,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-from .logger import LOGGING
+# from .logger import LOGGING

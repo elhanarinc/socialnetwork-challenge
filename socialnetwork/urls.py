@@ -5,6 +5,7 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('login', views.login, name='login'),
     path('like', views.like, name='like'),
-    path('dislike', views.dislike, name='dislike'),
-    path('create', views.create, name='create')
+    path('unlike', views.unlike, name='unlike'),
+    path('create', views.create, name='create'),
+    path('finduser', views.find_user, name='find_user')
 ]

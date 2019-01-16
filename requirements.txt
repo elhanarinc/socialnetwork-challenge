@@ -10,6 +10,7 @@ psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
 pycparser==2.19
 pyhunter==0.3
+PyJWT==1.7.1
 pytz==2018.7
 requests==2.21.0
 six==1.12.0

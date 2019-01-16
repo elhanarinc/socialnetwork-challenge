@@ -18,3 +18,5 @@ class PostForm(forms.Form):
 
 class LikeAndDislikeForm(forms.Form):
     post_id = forms.CharField(required=True)
+    max_count = forms.IntegerField(required=False)
+
