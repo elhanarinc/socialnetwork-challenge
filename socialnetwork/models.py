@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.postgres.fields import JSONField, ArrayField
+from django.contrib.postgres.fields import JSONField
 
 
 class UserData(models.Model):
@@ -19,8 +19,16 @@ class UserData(models.Model):
 class PostData(models.Model):
     id = models.AutoField(primary_key=True)
     content = models.CharField(max_length=200, null=False, blank=False)
-    liked_users = ArrayField(models.IntegerField(blank=True), null=True, blank=True)
     owner = models.ForeignKey(UserData, related_name='posts', on_delete=models.CASCADE)
 
     def __str__(self):
         return 'Id: %s, Owner: %s' % (self.id, self.owner.name)
+
+
+class UserPostLike(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(UserData, related_name='user', on_delete=models.CASCADE)
+    post = models.ForeignKey(PostData, related_name='post', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return 'ID: %s, User: %s, Post: %s' % (self.id, self.user.id, self.post.id)

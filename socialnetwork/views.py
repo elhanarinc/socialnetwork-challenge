@@ -4,7 +4,7 @@ from django.utils.decorators import decorator_from_middleware
 from datetime import datetime, timedelta
 
 from .forms import SignupForm, LoginForm, PostForm, LikeAndDislikeForm
-from .models import UserData, PostData
+from .models import UserData, PostData, UserPostLike
 from .middleware import JWTMiddleware
 from .utils.emailhunter import check_email
 from .utils.clearbit import find_extensive_data
@@ -148,24 +148,26 @@ def like_dislike_helper_func(request, selector):
                 if 'max_count' in body and int(user.current_like_count) >= int(body['max_count']):
                     return JsonResponse({'result': 'user cannot like more than max like count'}, status=403)
 
-                if post.liked_users is None:
-                    post.liked_users = []
+                try:
+                    liked_post = UserPostLike.objects.get(post=post, user=user)
+                except UserPostLike.DoesNotExist:
+                    liked_post = None
 
                 if selector == 'like':
-                    if user.id in post.liked_users:
+                    if liked_post is not None:
                         return JsonResponse({'result': 'user already liked this post'}, status=403)
 
-                    post.liked_users.append(user.id)
                     user.current_like_count = user.current_like_count + 1
+                    liked_post = UserPostLike(user=user, post=post)
+                    liked_post.save()
 
                 elif selector == 'unlike':
-                    if user.id not in post.liked_users:
+                    if liked_post is None:
                         return JsonResponse({'result': 'user haven`t liked this post'}, status=403)
 
-                    post.liked_users.remove(user.id)
+                    liked_post.delete()
                     user.current_like_count = user.current_like_count - 1
 
-                post.save(update_fields=['liked_users'])
                 user.save(update_fields=['current_like_count'])
                 return JsonResponse({'result': 'OK'})
 
