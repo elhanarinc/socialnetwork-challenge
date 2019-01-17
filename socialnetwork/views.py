@@ -187,3 +187,14 @@ def find_user(request):
         return JsonResponse({'result': 'no user found'}, status=404)
     else:
         return JsonResponse({'user_email': user_data[0].email})
+
+
+@require_http_methods(['GET'])
+def check_posts(request):
+    not_liked_posts = PostData.objects\
+        .exclude(id__in=UserPostLike.objects.values_list('post__id', flat=True))\
+        .values_list('id', flat=True)
+    if not_liked_posts is None:
+        return JsonResponse({'result': '0'})
+    count_of_not_liked_posts = len(list(not_liked_posts))
+    return JsonResponse({'result': count_of_not_liked_posts})
