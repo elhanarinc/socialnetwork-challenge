@@ -3,7 +3,7 @@ from django.views.decorators.http import require_http_methods
 from django.utils.decorators import decorator_from_middleware
 from datetime import datetime, timedelta
 
-from .forms import SignupForm, LoginForm, PostForm, LikeAndDislikeForm
+from .forms import SignupForm, LoginForm, PostForm, LikeAndDislikeForm, RandomPostForm
 from .models import UserData, PostData, UserPostLike
 from .middleware import JWTMiddleware
 from .utils.emailhunter import check_email
@@ -12,6 +12,7 @@ from .utils.clearbit import find_extensive_data
 import json
 import bcrypt
 import jwt
+import random
 
 JWT_SECRET = 'tradecore'
 JWT_ALGORITHM = 'HS256'
@@ -20,6 +21,8 @@ JWT_EXP_DELTA_HOURS = 24
 
 @require_http_methods(['POST'])
 def signup(request):
+    if len(request.body) < 1:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)
     body = json.loads(request.body)
     signup_data = SignupForm(body)
     if signup_data.is_valid():
@@ -57,6 +60,8 @@ def signup(request):
 
 @require_http_methods(['POST'])
 def login(request):
+    if len(request.body) < 1:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)
     body = json.loads(request.body)
     login_data = LoginForm(body)
     if login_data.is_valid():
@@ -85,18 +90,24 @@ def login(request):
 @require_http_methods(['POST'])
 @decorator_from_middleware(JWTMiddleware)
 def like(request):
+    if len(request.body) < 1:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)
     return like_dislike_helper_func(request, 'like')
 
 
 @require_http_methods(['POST'])
 @decorator_from_middleware(JWTMiddleware)
 def unlike(request):
+    if len(request.body) < 1:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)
     return like_dislike_helper_func(request, 'unlike')
 
 
 @require_http_methods(['POST'])
 @decorator_from_middleware(JWTMiddleware)
 def create(request):
+    if len(request.body) < 1:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)
     body = json.loads(request.body)
     post_data = PostForm(body)
     if post_data.is_valid():
@@ -177,6 +188,8 @@ def like_dislike_helper_func(request, selector):
 
 @require_http_methods(['GET'])
 def find_user(request):
+    if len(request.body) < 1:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)
     body = json.loads(request.body)
     max_like_count = body['max_like_count']
     user_data = UserData.objects.all()\
@@ -198,3 +211,34 @@ def check_posts(request):
         return JsonResponse({'result': '0'})
     count_of_not_liked_posts = len(list(not_liked_posts))
     return JsonResponse({'result': count_of_not_liked_posts})
+
+
+@require_http_methods(['GET'])
+def get_random_post(request):
+    if len(request.body) < 1:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)
+    body = json.loads(request.body)
+    user_data = RandomPostForm(body)
+    if user_data.is_valid():
+        user_id = int(body['user_id'])
+
+        # Exclude with two conditions is buggy, so i call them in order
+        available_users = PostData.objects\
+            .exclude(id__in=UserPostLike.objects.values_list('post__id', flat=True))\
+            .exclude(owner__id__exact=user_id)\
+            .values_list('owner', flat=True)
+
+        if available_users is None:
+            return JsonResponse({'result': 0})
+
+        available_users = list(set(available_users))
+        length_of_avail_users = len(available_users)
+        random_index = random.randint(0, length_of_avail_users - 1)
+        random_user = available_users[random_index]
+
+        post_to_be_liked = PostData.objects.filter(owner__id=random_user).random()
+        post_values = list(post_to_be_liked.values())[0]
+
+        return JsonResponse({'result': post_values['id']})
+    else:
+        return JsonResponse({'result': 'invalid or missing body params'}, status=400)

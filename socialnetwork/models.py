@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+from django_random_queryset import RandomManager
 
 
 class UserData(models.Model):
@@ -20,6 +21,7 @@ class PostData(models.Model):
     id = models.AutoField(primary_key=True)
     content = models.CharField(max_length=200, null=False, blank=False)
     owner = models.ForeignKey(UserData, related_name='posts', on_delete=models.CASCADE)
+    objects = RandomManager()
 
     def __str__(self):
         return 'Id: %s, Owner: %s' % (self.id, self.owner.name)

@@ -20,3 +20,6 @@ class LikeAndDislikeForm(forms.Form):
     post_id = forms.CharField(required=True)
     max_count = forms.IntegerField(required=False)
 
+
+class RandomPostForm(forms.Form):
+    user_id = forms.CharField(required=True)

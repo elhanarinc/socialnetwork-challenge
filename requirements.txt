@@ -4,6 +4,7 @@ cffi==1.11.5
 chardet==3.0.4
 clearbit==0.1.7
 Django==2.1
+django-random-queryset==0.1.1
 gunicorn==19.9.0
 idna==2.8
 psycopg2==2.7.6.1
