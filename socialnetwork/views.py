@@ -233,6 +233,9 @@ def get_random_post(request):
 
         available_users = list(set(available_users))
         length_of_avail_users = len(available_users)
+        if length_of_avail_users == 0:
+            return JsonResponse({'result': 0})
+
         random_index = random.randint(0, length_of_avail_users - 1)
         random_user = available_users[random_index]
 
