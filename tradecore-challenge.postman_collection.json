@@ -1,0 +1,435 @@
+{
+	"info": {
+		"_postman_id": "bdca1fd0-9f31-4ae0-8813-8e59be6c9354",
+		"name": "tradecore-challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"dummy\",\n\t\"email\": \"dummy@ceng.metu.edu.tr\",\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"dummy@ceng.metu.edu.tr\",\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1NDc4MzIwMTR9.54-qfDUi4AD0TXtIoCv6tsI-hJUCJCERWl2QZkF7aC0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"content\": \"lorem ipsum\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NDc4ODMxMjN9.cdVbvjHpSTB_QzYXv0hEOPNW2vXtcbVheoYnPUCdGBc"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"post_id\": \"9\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/like",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unlike",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4MDA4MDN9.Mp-MGbEy44A9tdgyTNyVhX2M924pb701qTPtgBbcNdE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"post_id\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/unlike",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"unlike"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "finduser",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"max_like_count\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/finduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"finduser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkposts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"max_like_count\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/checkposts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"checkposts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getrandompost",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/getrandompost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"getrandompost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteall",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/deleteall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"deleteall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getusers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/getusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"getusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getposts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/getposts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"getposts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getlikes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/getlikes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"getlikes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
