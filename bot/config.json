@@ -1,6 +1,6 @@
 {
-  "number_of_users": 3,
-  "max_posts_per_user": 5,
-  "max_likes_per_user": 2,
+  "number_of_users": 4,
+  "max_posts_per_user": 4,
+  "max_likes_per_user": 4,
   "api_url": "http://localhost:8000"
 }

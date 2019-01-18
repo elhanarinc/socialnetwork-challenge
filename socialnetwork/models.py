@@ -13,8 +13,8 @@ class UserData(models.Model):
     additional_information = JSONField(null=True, blank=True)
 
     def __str__(self):
-        return 'Id: %s Name: %s, Email: %s, Post: %s, Like: %s, Password: %s' % (
-            self.id, self.name, self.email, self.current_post_count, self.current_like_count, self.password)
+        return 'Id: %s Name: %s, Email: %s, Post: %s, Like: %s' % (
+            self.id, self.name, self.email, self.current_post_count, self.current_like_count)
 
 
 class PostData(models.Model):
@@ -33,4 +33,4 @@ class UserPostLike(models.Model):
     post = models.ForeignKey(PostData, related_name='post', on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'ID: %s, User: %s, Post: %s' % (self.id, self.user.id, self.post.id)
+        return 'Id: %s, User: %s, Post: %s' % (self.id, self.user.id, self.post.id)
