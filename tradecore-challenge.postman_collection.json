@@ -19,15 +19,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"dummy\",\n\t\"email\": \"dummy@ceng.metu.edu.tr\",\n\t\"password\": \"123456\"\n}"
+					"raw": "{\n\t\"name\": \"dummy\",\n\t\"email\": \"dummy@gmail.com\",\n\t\"password\": \"123456\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/signup",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/signup",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"signup"
 					]
@@ -49,15 +52,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"dummy@ceng.metu.edu.tr\",\n\t\"password\": \"123456\"\n}"
+					"raw": "{\n\t\"email\": \"dummy@gmail.com\",\n\t\"password\": \"123456\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/login",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/login",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"login"
 					]
@@ -78,21 +84,24 @@
 					},
 					{
 						"key": "x-access-token",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1NDc4MzIwMTR9.54-qfDUi4AD0TXtIoCv6tsI-hJUCJCERWl2QZkF7aC0",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc5MzI0MzZ9.qmzQC4pgVsWKl434QE2sY4THX2nOdkxM21pG9DnYwpU",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"content\": \"lorem ipsum\"\n}"
+					"raw": "{\n\t\"content\": \"dokuz\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/create",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/create",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"create"
 					]
@@ -122,12 +131,15 @@
 					"raw": "{\n\t\"post_id\": \"9\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/like",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/like",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"like"
 					]
@@ -157,12 +169,15 @@
 					"raw": "{\n\t\"post_id\": \"5\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/unlike",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/unlike",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"unlike"
 					]
@@ -190,12 +205,15 @@
 					"raw": "{\n\t\"max_like_count\": \"5\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/finduser",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/finduser",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"finduser"
 					]
@@ -220,15 +238,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"max_like_count\": \"5\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/checkposts",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/checkposts",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"checkposts"
 					]
@@ -249,25 +270,22 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
-					},
-					{
-						"key": "x-access-token",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
-						"type": "text",
-						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": \"1\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/getrandompost",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/getrandompost",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"getrandompost"
 					]
@@ -288,25 +306,22 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
-					},
-					{
-						"key": "x-access-token",
-						"type": "text",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
-						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": \"1\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/deleteall",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/deleteall",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"deleteall"
 					]
@@ -327,25 +342,22 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
-					},
-					{
-						"key": "x-access-token",
-						"type": "text",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
-						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": \"1\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/getusers",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/getusers",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"getusers"
 					]
@@ -366,25 +378,22 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
-					},
-					{
-						"key": "x-access-token",
-						"type": "text",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
-						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": \"1\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/getposts",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/getposts",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"getposts"
 					]
@@ -405,25 +414,22 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
-					},
-					{
-						"key": "x-access-token",
-						"type": "text",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NDc4ODMwODN9.ru9YzTGuRruBIGZm2C1s75N98q64en-C3xCfFb07nBQ",
-						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": \"1\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/getlikes",
+					"raw": "http://tradecore-challenge.westeurope.cloudapp.azure.com/getlikes",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"tradecore-challenge",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"getlikes"
 					]

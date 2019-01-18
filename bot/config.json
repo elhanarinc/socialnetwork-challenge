@@ -2,5 +2,5 @@
   "number_of_users": 4,
   "max_posts_per_user": 4,
   "max_likes_per_user": 4,
-  "api_url": "http://localhost:8000"
+  "api_url": "http://tradecore-challenge.westeurope.cloudapp.azure.com"
 }

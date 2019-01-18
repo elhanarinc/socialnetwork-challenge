@@ -1,9 +1,10 @@
 # Tradecore Challenge
 
-Tradecore coding challenge written with Django Framework.
+Tradecore coding challenge written with Django Framework. API deployed endpoint:
+* `http://tradecore-challenge.westeurope.cloudapp.azure.com`
 
 This project assumes you had already installed these tools:
-1. [python 3](https://realpython.com/installing-python/)
+1. [python v3.6 or higher](https://www.python.org/downloads/release/python-367/)
 2. [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
 3. [postgresql](http://postgresguide.com/setup/install.html)
 
@@ -107,3 +108,9 @@ Bot Configuration File:
 ```
 Sample bot start command (You should give the bot config location as --file parameter):
 * `python automated_bot.py --file config.json`
+
+Tools used for deploying and serving endpoints:
+1. [Microsoft Azure VM](https://azure.microsoft.com/tr-tr/services/virtual-machines/)
+2. [gunicorn](https://gunicorn.org/)
+3. [nginx](https://www.nginx.com/)
+4. [supervisor](http://supervisord.org/introduction.html)
