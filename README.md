@@ -1,7 +1,6 @@
-# Tradecore Challenge
+# Django Challenge
 
-Tradecore coding challenge written with Django Framework. API deployed endpoint:
-* `http://tradecore-challenge.westeurope.cloudapp.azure.com`
+Coding challenge written with Django Framework. 
 
 This project assumes you had already installed these tools:
 1. [python v3.6 or higher](https://www.python.org/downloads/release/python-367/)
